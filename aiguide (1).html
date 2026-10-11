@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-заработок | Гайд</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0f;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at 50% 0%, #1a0533 0%, #0a0a0f 70%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,200,255,0.1) 0%, transparent 70%);
+    bottom: -100px; right: -50px;
+    border-radius: 50%;
+    animation: pulse 5s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%,100%{transform:scale(1);opacity:0.6}
+    50%{transform:scale(1.15);opacity:1}
+  }
+
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #7b2ff7, #00c8ff);
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative; z-index:1;
+  }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.15;
+    max-width: 800px;
+    position: relative; z-index:1;
+    margin-bottom: 24px;
+  }
+
+  .highlight-purple { color: #b76fff; }
+  .highlight-cyan   { color: #00e5ff; }
+  .highlight-yellow { color: #ffe600; }
+  .highlight-pink   { color: #ff4dab; }
+  .highlight-green  { color: #39ff99; }
+  .highlight-orange { color: #ff8c00; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #bbb;
+    max-width: 600px;
+    line-height: 1.7;
+    position: relative; z-index:1;
+    margin-bottom: 40px;
+  }
+
+  .zero-pill {
+    display: inline-block;
+    background: rgba(255,230,0,0.15);
+    border: 2px solid #ffe600;
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffe600;
+    position: relative; z-index:1;
+  }
+
+  /* SECTION */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .section-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 4px 14px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #ccc;
+  }
+
+  /* CARDS GRID */
+  .cards-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 900;
+    margin-bottom: 50px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media(max-width:600px){ .cards { grid-template-columns:1fr; } }
+
+  .card {
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .card:hover { transform: translateY(-6px); }
+
+  .card-1 { background: linear-gradient(135deg, #1a0533 0%, #2d0a5e 100%); border: 1px solid #7b2ff7; }
+  .card-2 { background: linear-gradient(135deg, #001a2e 0%, #003355 100%); border: 1px solid #00c8ff; }
+  .card-3 { background: linear-gradient(135deg, #1a1a00 0%, #2e2a00 100%); border: 1px solid #ffe600; }
+  .card-4 { background: linear-gradient(135deg, #1a0020 0%, #330040 100%); border: 1px solid #ff4dab; }
+
+  .card-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.15;
+    position: absolute;
+    top: 12px; right: 20px;
+    line-height: 1;
+  }
+
+  .card-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .card p {
+    font-size: 0.92rem;
+    color: #bbb;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .steps-list {
+    list-style: none;
+    padding: 0;
+  }
+  .steps-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.88rem;
+    color: #ccc;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .step-dot {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .card-1 .step-dot { background: #7b2ff7; }
+  .card-2 .step-dot { background: #00c8ff; color: #000; }
+  .card-3 .step-dot { background: #ffe600; color: #000; }
+  .card-4 .step-dot { background: #ff4dab; }
+
+  .tag {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .tag-purple { background: rgba(123,47,247,0.25); color: #b76fff; }
+  .tag-cyan   { background: rgba(0,200,255,0.15); color: #00e5ff; }
+  .tag-yellow { background: rgba(255,230,0,0.15); color: #ffe600; }
+  .tag-pink   { background: rgba(255,77,171,0.2); color: #ff4dab; }
+
+  /* SECRET BLOCK */
+  .secret {
+    background: linear-gradient(135deg, #0d0d0d 0%, #111 100%);
+    border: 2px solid #39ff99;
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0 20px;
+    max-width: 860px;
+    margin: 0 auto 80px;
+  }
+
+  .secret::before {
+    content: '🤫';
+    font-size: 5rem;
+    position: absolute;
+    opacity: 0.05;
+    top: -10px; right: 20px;
+  }
+
+  .secret h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+
+  .secret p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+
+  .aibox-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #39ff99, #00c8ff);
+    color: #000;
+    border-radius: 50px;
+    padding: 14px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin: 10px 0;
+  }
+
+  .features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .feature-chip {
+    background: rgba(57,255,153,0.1);
+    border: 1px solid rgba(57,255,153,0.3);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    color: #39ff99;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #1a0533, #000933);
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .cta-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+    position: relative; z-index:1;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: #bbb;
+    max-width: 500px;
+    margin: 0 auto 36px;
+    position: relative; z-index:1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #7b2ff7 0%, #ff4dab 100%);
+    border-radius: 50px;
+    padding: 18px 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    position: relative; z-index:1;
+    box-shadow: 0 0 40px rgba(123,47,247,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(123,47,247,0.7);
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0 auto;
+  }
+
+  /* STATS BAR */
+  .stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat {
+    padding: 32px 48px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat:last-child { border-right: none; }
+  @media(max-width:600px){ .stat { padding: 24px; border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); } }
+  .stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 0.82rem; color: #777; text-transform: uppercase; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🤖 AI-заработок 2025</div>
+  <h1>
+    Как зарабатывать на <span class="highlight-purple">AI-роликах</span><br>
+    и <span class="highlight-cyan">бесплатном трафике</span>
+  </h1>
+  <p class="hero-sub">
+    Прямо сейчас люди делают на этом деньги,<br>
+    <strong style="color:#fff">даже не снимая своё лицо.</strong><br>
+    Алгоритмы соцсетей сами раздают просмотры — нужно лишь их <span class="highlight-green">монетизировать.</span>
+  </p>
+  <div class="zero-pill">⚡ Даже если у тебя 0 подписчиков</div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-num highlight-purple">70+</span>
+    <span class="stat-label">нейросетей в одном месте</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num highlight-cyan">10 мин</span>
+    <span class="stat-label">вместо 5 часов на ролик</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num highlight-yellow">15 000 ₽</span>
+    <span class="stat-label">с 10 действий (CPA)</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num highlight-pink">4</span>
+    <span class="stat-label">рабочие схемы</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="section-label">📖 Введение</div>
+  <p class="intro-text">
+    Привет! Если ты до сих пор просто листаешь <span class="highlight-cyan">Reels, Shorts и TikTok</span>, убивая время —
+    у меня для тебя новости. <span class="highlight-yellow">Искусственный интеллект</span> позволяет генерировать
+    видео, аватары и мультики за минуты. Алгоритмы соцсетей <span class="highlight-green">обожают</span>
+    такой контент и дают ему бесплатный органический трафик.
+    Твоя задача — просто этот трафик <span class="highlight-pink">монетизировать.</span>
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CARDS -->
+<section>
+  <h2 class="cards-title">⚡ 4 рабочие схемы <span class="highlight-purple">прямо сейчас</span></h2>
+  <div class="cards">
+
+    <!-- CARD 1 -->
+    <div class="card card-1">
+      <span class="card-num">01</span>
+      <span class="card-icon">💰</span>
+      <h3>Прямая монетизация<br><span class="highlight-purple">просмотров</span></h3>
+      <p>Брендам нужны не твои подписчики, а <strong style="color:#fff">просмотры.</strong> Платформа <span class="highlight-purple">Viralee</span> платит фиксировано.</p>
+      <ul class="steps-list">
+        <li><span class="step-dot">1</span> Регистрируешься на Viralee</li>
+        <li><span class="step-dot">2</span> Берёшь ТЗ от бренда</li>
+        <li><span class="step-dot">3</span> Генерируешь ролик с ИИ</li>
+        <li><span class="step-dot">4</span> Выкладываешь в TikTok/Reels</li>
+        <li><span class="step-dot">5</span> Получаешь <span class="highlight-purple">оплату за 1000 просмотров</span></li>
+      </ul>
+      <span class="tag tag-purple">🏆 Без вложений</span>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card card-2">
+      <span class="card-num">02</span>
+      <span class="card-icon">▶️</span>
+      <h3>YouTube Shorts +<br><span class="highlight-cyan">Партнёрки (Affiliate)</span></h3>
+      <p>YouTube — машина по генерации трафика. Короткие AI-ролики собирают <strong style="color:#fff">миллионы просмотров.</strong></p>
+      <ul class="steps-list">
+        <li><span class="step-dot">✓</span> Официальная монетизация YouTube</li>
+        <li><span class="step-dot">✓</span> Реферальные ссылки в комментарии</li>
+        <li><span class="step-dot">✓</span> Платформы <span class="highlight-cyan">Metabox</span> и <span class="highlight-cyan">Doytong</span></li>
+      </ul>
+      <span class="tag tag-cyan">💎 Самое прибыльное</span>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card card-3">
+      <span class="card-num">03</span>
+      <span class="card-icon">✈️</span>
+      <h3>Перелив в <span class="highlight-yellow">Telegram</span><br>(Арбитраж)</h3>
+      <p>В Телеграме нет бесплатного продвижения. Зато оно есть в <span class="highlight-yellow">Reels и TikTok!</span></p>
+      <ul class="steps-list">
+        <li><span class="step-dot">1</span> Создаёшь Telegram-канал по теме</li>
+        <li><span class="step-dot">2</span> Делаешь AI-ролики, зовёшь в ТГ</li>
+        <li><span class="step-dot">3</span> Трафик льётся бесплатно</li>
+        <li><span class="step-dot">4</span> <span class="highlight-yellow">Продаёшь рекламные места</span></li>
+      </ul>
+      <span class="tag tag-yellow">📈 Пассивный доход</span>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card card-4">
+      <span class="card-num">04</span>
+      <span class="card-icon">🎯</span>
+      <h3>CPA-сети —<br><span class="highlight-pink">оплата за действие</span></h3>
+      <p>Банки, магазины, игры платят за привлечённого клиента. Пример: <span class="highlight-pink">1 500 ₽</span> за оформленную карту.</p>
+      <ul class="steps-list">
+        <li><span class="step-dot">✓</span> Admitad, Perfuence и др.</li>
+        <li><span class="step-dot">✓</span> AI-ролики про экономию/кредиты</li>
+        <li><span class="step-dot">✓</span> 10 карт = <span class="highlight-pink">15 000 ₽</span> без рекламы</li>
+      </ul>
+      <span class="tag tag-pink">🔥 Быстрый результат</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECRET -->
+<div style="padding: 60px 20px;">
+<div class="secret">
+  <span style="font-size:3rem; display:block; margin-bottom:20px;">🤫</span>
+  <h2>ГЛАВНЫЙ СЕКРЕТ:<br><span class="highlight-green">Как делать ролики пачками</span><br>и не сойти с ума?</h2>
+  <p>
+    Если ты будешь сидеть над одним роликом по <span class="highlight-pink">5 часов</span> — быстро выгоришь.
+    Именно поэтому я использую <strong style="color:#fff">ИИ</strong>.
+  </p>
+  <p>
+    Вместо десятков подписок (Midjourney, ChatGPT, видеоредакторы)
+    — всё в одном Telegram-боте:
+  </p>
+  <div class="aibox-pill">🤖 AiBox — 70 нейросетей в одном боте</div>
+  <div class="features">
+    <span class="feature-chip">✍️ Пишет сценарии</span>
+    <span class="feature-chip">🎬 Идеальный монтаж</span>
+    <span class="feature-chip">🖼 Генерирует картинки</span>
+    <span class="feature-chip">🎭 Реалистичные аватары</span>
+    <span class="feature-chip">🎞 Мультики</span>
+    <span class="feature-chip">⏱ 10 минут вместо дней</span>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>
+    Твои просмотры —<br>
+    это твои <span class="highlight-yellow">💰 деньги</span>.<br>
+    <span class="highlight-pink">Пора их забирать!</span>
+  </h2>
+  <p>Вернись в бота, из которого ты скачал этот гайд. Там — пошаговый доступ к AiBox и обучению.</p>
+  <a href="#" class="cta-btn">🚀 Получить доступ к AiBox</a>
+
+  <div style="margin-top:50px; opacity:0.4; font-size:0.8rem;">© 2025 AI-заработок гайд. Все права защищены.</div>
+</div>
+
+</body>
+</html>
